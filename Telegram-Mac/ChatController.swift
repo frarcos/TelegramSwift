@@ -9272,8 +9272,34 @@ class ChatController: EditableViewController<ChatControllerView>, Notifable, Tab
             }
             return .rejected
         }, with: self, for: .DownArrow, priority: .low, modifierFlags: [.command])
-        
-        
+
+        let switchTopicTab: (Int) -> KeyHandlerResult = { [weak self] delta in
+            guard let `self` = self, let window = self.window, !hasModals(window) else {
+                return .rejected
+            }
+            let presentation = self.chatInteraction.presentation
+            guard presentation.monoforumState != nil, !presentation.monoforumTopics.isEmpty else {
+                return .rejected
+            }
+            // same order as the tabs: "All" first, then the topics
+            let tabs: [Int64?] = [nil] + presentation.monoforumTopics.map { $0.uniqueId }
+            let current = tabs.firstIndex(where: { $0 == presentation.chatLocation.threadId }) ?? 0
+            let next = (current + delta + tabs.count) % tabs.count
+            if next != current {
+                self.chatInteraction.updateChatLocationThread(tabs[next])
+            }
+            return .invoked
+        }
+
+        self.context.window.set(handler: { _ -> KeyHandlerResult in
+            return switchTopicTab(1)
+        }, with: self, for: .RightArrow, priority: .medium, modifierFlags: [.command, .option])
+
+        self.context.window.set(handler: { _ -> KeyHandlerResult in
+            return switchTopicTab(-1)
+        }, with: self, for: .LeftArrow, priority: .medium, modifierFlags: [.command, .option])
+
+
         self.context.window.set(handler: { [weak self] _ -> KeyHandlerResult in
             guard let `self` = self, let window = self.window, !hasModals(window) else {return .rejected}
             

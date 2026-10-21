@@ -39,7 +39,10 @@ private func shortcutEntires() -> [InputDataEntry] {
     entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: InputDataIdentifier("edit_media"), data: InputDataGeneralData(name: strings().shortcutsControllerChatRecordVoiceMessage, color: theme.colors.text, icon: nil, type: .context("⌘R"), viewType: .innerItem, enabled: true, description: nil)))
     index += 1
     
-    entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: InputDataIdentifier("search_in_chat"), data: InputDataGeneralData(name: strings().shortcutsControllerChatSearchMessages, color: theme.colors.text, icon: nil, type: .context("⌘F"), viewType: .lastItem, enabled: true, description: nil)))
+    entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: InputDataIdentifier("search_in_chat"), data: InputDataGeneralData(name: strings().shortcutsControllerChatSearchMessages, color: theme.colors.text, icon: nil, type: .context("⌘F"), viewType: .innerItem, enabled: true, description: nil)))
+    index += 1
+    
+    entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: InputDataIdentifier("switch_topic_tab"), data: InputDataGeneralData(name: strings().shortcutsControllerChatSwitchTopic, color: theme.colors.text, icon: nil, type: .context("⌥⌘← / ⌥⌘→"), viewType: .lastItem, enabled: true, description: nil)))
     index += 1
     
     // video chat

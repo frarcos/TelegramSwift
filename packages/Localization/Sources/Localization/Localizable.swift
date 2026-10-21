@@ -18255,6 +18255,8 @@ public final class L10n {
   public static var shortcutsControllerChatRecordVoiceMessage: String  { return L10n.tr("Localizable", "ShortcutsController.Chat.RecordVoiceMessage") }
   /// Search Messages
   public static var shortcutsControllerChatSearchMessages: String  { return L10n.tr("Localizable", "ShortcutsController.Chat.SearchMessages") }
+  /// Previous / Next Topic
+  public static var shortcutsControllerChatSwitchTopic: String  { return L10n.tr("Localizable", "ShortcutsController.Chat.SwitchTopic") }
   /// Select Message To Reply
   public static var shortcutsControllerChatSelectMessageToReply: String  { return L10n.tr("Localizable", "ShortcutsController.Chat.SelectMessageToReply") }
   /// Chat Actions
